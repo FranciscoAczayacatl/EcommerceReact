@@ -59,7 +59,7 @@ const ProductsDetail = () => {
     
 
 
-      <div>
+      <div >
         <h3>Related products</h3>
         <div className='related-container'>
         { 
