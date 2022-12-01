@@ -9,105 +9,116 @@
   justify-content: center;
   align-items: center;
 }
-.home img{
+.home img {
   width: 10vw;
   height: 12vh;
-
 }
-.a{
+.a {
   display: flex;
   gap: 5px;
 }
-.imgs-product{
+.imgs-product {
+  width: 100vw;
   display: flex;
   margin-left: 5vw;
+  margin-right: 5vw;
 }
-@media screen and (max-width: 900px){
-  .imgs-product{
+
+@media screen and (max-width: 900px) {
+  .imgs-product {
+    width: 70vw;
     display: flex;
     justify-content: center;
-    margin-left: 5vw;
+    margin-left: 6vw;
+    margin-bottom: 3vh;
   }
 }
-.img_o{
+.img_o {
   width: 15vw;
-
 }
-.related-container{
+.related-container {
   display: flex;
   gap: 5vh;
 }
-@media screen and (max-width: 900px){
-  .related-container{
+@media screen and (max-width: 900px) {
+  .related-container {
     display: flex;
     flex-direction: column;
     gap: 5vh;
     margin: 5vh;
   }
 }
-.product{
+.product {
   display: flex;
   margin: 5vw;
 }
-.imgs{
+@media screen and (max-width: 900px) {
+  .product {
+    display: flex;
+    flex-direction: column;
+    margin: 5vw;
+  }
+}
+
+.imgs {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.img-firs img{
+.img-firs img {
   width: 30vw;
   height: 50vh;
 }
-.img-second img{
+.img-second img {
   width: 15vw;
   height: 13vh;
 }
-.search-input{
+.search-input {
   margin-top: 5vh;
   display: flex;
   justify-content: center;
-  padding: 0 50vh ;
+  padding: 0 50vh;
 }
-@media screen and (max-width: 900px){
-  .search-input{
+@media screen and (max-width: 900px) {
+  .search-input {
     margin-top: 5vh;
     display: flex;
     justify-content: center;
     padding: 0;
   }
 }
-.cards_container{
+.cards_container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin: 10vh;
   gap: 10px;
 }
 @media screen and (max-width: 900px) {
-  .cards_container{
+  .cards_container {
     display: flex;
     flex-direction: column;
     margin: 4vh;
     gap: 10px;
   }
 }
-.product-card{
+.product-card {
   text-decoration: none;
 }
-.dark{
+.dark {
   color: black;
 }
-.red{
+.red {
   color: red;
 }
-.green{
+.green {
   color: green;
 }
-.buttons{
+.buttons {
   display: flex;
   justify-content: center;
   gap: 2vw;
 }
-.price{
+.price {
   color: crimson;
 }
 .sk-cube-grid {
@@ -122,52 +133,67 @@
   background-color: rgb(255, 255, 255);
   float: left;
   -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
-          animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; 
+  animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
 }
 .sk-cube-grid .sk-cube1 {
   -webkit-animation-delay: 0.2s;
-          animation-delay: 0.2s; }
+  animation-delay: 0.2s;
+}
 .sk-cube-grid .sk-cube2 {
   -webkit-animation-delay: 0.3s;
-          animation-delay: 0.3s; }
+  animation-delay: 0.3s;
+}
 .sk-cube-grid .sk-cube3 {
   -webkit-animation-delay: 0.4s;
-          animation-delay: 0.4s; }
+  animation-delay: 0.4s;
+}
 .sk-cube-grid .sk-cube4 {
   -webkit-animation-delay: 0.1s;
-          animation-delay: 0.1s; }
+  animation-delay: 0.1s;
+}
 .sk-cube-grid .sk-cube5 {
   -webkit-animation-delay: 0.2s;
-          animation-delay: 0.2s; }
+  animation-delay: 0.2s;
+}
 .sk-cube-grid .sk-cube6 {
   -webkit-animation-delay: 0.3s;
-          animation-delay: 0.3s; }
+  animation-delay: 0.3s;
+}
 .sk-cube-grid .sk-cube7 {
   -webkit-animation-delay: 0s;
-          animation-delay: 0s; }
+  animation-delay: 0s;
+}
 .sk-cube-grid .sk-cube8 {
   -webkit-animation-delay: 0.1s;
-          animation-delay: 0.1s; }
+  animation-delay: 0.1s;
+}
 .sk-cube-grid .sk-cube9 {
   -webkit-animation-delay: 0.2s;
-          animation-delay: 0.2s; }
+  animation-delay: 0.2s;
+}
 
 @-webkit-keyframes sk-cubeGridScaleDelay {
-  0%, 70%, 100% {
+  0%,
+  70%,
+  100% {
     -webkit-transform: scale3D(1, 1, 1);
-            transform: scale3D(1, 1, 1);
-  } 35% {
+    transform: scale3D(1, 1, 1);
+  }
+  35% {
     -webkit-transform: scale3D(0, 0, 1);
-            transform: scale3D(0, 0, 1); 
+    transform: scale3D(0, 0, 1);
   }
 }
 
 @keyframes sk-cubeGridScaleDelay {
-  0%, 70%, 100% {
+  0%,
+  70%,
+  100% {
     -webkit-transform: scale3D(1, 1, 1);
-            transform: scale3D(1, 1, 1);
-  } 35% {
+    transform: scale3D(1, 1, 1);
+  }
+  35% {
     -webkit-transform: scale3D(0, 0, 1);
-            transform: scale3D(0, 0, 1);
-  } 
+    transform: scale3D(0, 0, 1);
+  }
 }

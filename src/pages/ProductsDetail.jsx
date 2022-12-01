@@ -1,104 +1,141 @@
-import React, { useEffect } from 'react';
-import { Button, Card } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
-import { getProductThunk } from '../store/slices/products.slice';
+import React, { useEffect, useState } from "react";
+import { Button, Card } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import RelateProduct from "../components/RelateProduct";
+import { createCartTunk } from "../store/slices/cart.slice";
+import { getProductThunk } from "../store/slices/products.slice";
+import Carousel from "react-bootstrap/Carousel";
+import { render } from "react-dom";
 
 const ProductsDetail = () => {
+  const [index, setIndex] = useState(0);
 
-  const {id} =useParams();
-  const dispatch=useDispatch();
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getProductThunk());
   }, []);
 
-  const productList=useSelector(state=>state.products);
+  const productList = useSelector((state) => state.products);
 
-  const product=productList.find(productItem=>productItem.id === Number(id));
+  const product = productList.find(
+    (productItem) => productItem.id === Number(id)
+  );
 
-  const relatedProduct=productList.filter(productsItem=> productsItem.category.id===product.category.id)
+  const relatedProduct = productList.filter(
+    (productsItem) => productsItem.category.id === product.category.id
+  );
+  let [quantitys, setQuantity] = useState("1");
 
-  console.log(relatedProduct);
+  const addToCart = () => {
+    const cart = {
+      id: product?.id,
+      quantity: String(quantitys),
+    };
+    console.log(cart);
+    dispatch(createCartTunk(cart));
+  };
+
+  const sum = () => {
+    setQuantity(Number(quantitys) + 1);
+  };
+  const subtraction = () => {
+    setQuantity(Number(quantitys) - 1);
+  };
 
   return (
     <div>
-      <div >
-        <div key={product?.id} className='product'>
-          <div className='imgs-product'>
-            <div className='img-firs'><img src={product?.productImgs[0]} alt="" /></div>
-            <div className='imgs'>
-              <div className='img-second'><img src={product?.productImgs[1]} alt="" /></div>
-              <div className='img-second'><img src={product?.productImgs[2]} alt="" /></div>
-            </div>
+      <div>
+        <div key={product?.id} className="product">
+          <div className="imgs-product">
+            <Carousel activeIndex={index} onSelect={handleSelect}>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src={product?.productImgs[0]}
+                  alt="First slide"
+                />
+                <Carousel.Caption></Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src={product?.productImgs[1]}
+                  alt="Second slide"
+                />
+
+                <Carousel.Caption></Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src={product?.productImgs[2]}
+                  alt="Third slide"
+                />
+
+                <Carousel.Caption></Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
           </div>
           <div>
             <h1>{product?.title}</h1>
             <p>{product?.description}</p>
             <h3>${product?.price}</h3>
-            <div>
-
-            </div>
-            <p className='dark a'><b>Status: </b>
-                  {
-                    <div>
-                      {
-                        product?.status !== 'active'? <i class="fa-solid fa-face-frown red"></i>: <i class="fa-solid fa-face-laugh-beam green"></i>
-                      }
-                    </div> 
-                  }
+            <div></div>
+            <p className="dark a">
+              <b>Status: </b>
+              {product?.status !== "active" ? (
+                <i className="fa-solid fa-face-frown red"></i>
+              ) : (
+                <i class="fa-solid fa-face-laugh-beam green"></i>
+              )}
             </p>
-            <p></p>
-            
-            <Button variant="success"><i class="fa-solid fa-cart-plus"></i></Button>
-          
+            <button
+              style={{
+                borderRadius: `${50}%`,
+                width: `${2}vw`,
+                color: "white",
+                background: "blueviolet",
+                borde: "none",
+              }}
+              onClick={sum}
+            >
+              +
+            </button>
+            <input
+              type="text"
+              value={quantitys}
+              onChange={(e) => setQuantity(e.target.value)}
+              style={{ width: `${2}vw`, margin: `${5}px` }}
+            />
+            <button
+              style={{
+                borderRadius: `${50}%`,
+                width: `${2}vw`,
+                color: "white",
+                background: "blueviolet",
+                borde: "none",
+              }}
+              onClick={subtraction}
+            >
+              -
+            </button>
+            <Button variant="success" onClick={addToCart}>
+              <i class="fa-solid fa-cart-plus"></i>
+            </Button>
           </div>
-          
         </div>
       </div>
-    
 
-
-      <div >
-        <h3>Related products</h3>
-        <div className='related-container'>
-        { 
-          relatedProduct.map(relatep =>(
-            <div className='product-card'>
-            <Card style={{ width: '18rem' }}>
-            <Link to={`/products/${relatep.id}`} className='product-card'>
-              <Card.Img variant="center" src={relatep.productImgs?.[0]}  className='img_o'/>
-              <Card.Body>
-                <Card.Title className='dark'>{relatep.title}</Card.Title>
-                <Card.Text>
-                  <h6 className='price'>Price: {relatep.price}</h6>
-                  
-                  <p className='dark'><b>Status: </b>
-                    {
-                      <div>
-                        {
-                          relatep.status !== 'active'?<i class="fa-solid fa-face-frown red"></i>: <i class="fa-solid fa-face-laugh-beam green"></i>
-                        }
-                      </div>
-                    }
-                  </p>
-                </Card.Text>
-                <Button variant="success"><i class="fa-solid fa-cart-plus"></i></Button>
-               </Card.Body>
-               </Link>
-            </Card>
-            </div>
-          ))
-        }
-
-        </div>
-      
+      <div>
+        <RelateProduct relatedProduct={relatedProduct} />
       </div>
-
     </div>
-   
-
-    
   );
 };
 

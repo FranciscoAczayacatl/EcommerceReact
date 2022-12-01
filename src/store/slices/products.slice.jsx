@@ -33,6 +33,8 @@ export const filterInputThunk = (inputSearch) => (dispatch) => {
         .then((res) => dispatch(setProduct(res.data.data.products)))
         .finally(() => dispatch(setIsLoading(false)));
 }
+
+
 export const { setProduct } = productsSlice.actions;
 
 export default productsSlice.reducer;
