@@ -15,6 +15,15 @@ const SideBarCar = ({ handleClose, show }) => {
     dispatch(delatedCartThunk(id));
   }
 
+  let totalArr=[];
+  const total=()=>{
+    let num=0;
+    for (let i = 0; i < totalArr.length; i++) {
+      num+=Number(totalArr[i])
+    }
+    return String(num);
+  }
+
   return (
     <div>
       <>
@@ -41,7 +50,9 @@ const SideBarCar = ({ handleClose, show }) => {
                     </Card.Subtitle>
                     <Card.Text>
                       <p>{product.brand}</p>
-                     
+                     {
+                       totalArr.push(product.price)
+                     }
                     </Card.Text>
                   </Card.Body>
               </Link>
@@ -52,9 +63,12 @@ const SideBarCar = ({ handleClose, show }) => {
               </div>
               
             ))}
-            <Button onClick={() => dispatch(checkoutCartThunk())}>
+           <div style={{display:'flex', gap:'2vh'}}>
+           <Button onClick={() => dispatch(checkoutCartThunk())}>
               Chekout
             </Button>
+            <h3>total: {total()}</h3>
+           </div>
           </Offcanvas.Body>
         </Offcanvas>
       </>
